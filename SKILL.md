@@ -50,6 +50,11 @@ do not copy a past multi-card serving configuration into a single-card task.
 
 ## Choose the operating mode
 
+For PI0.5/OpenPI porting, nested checkpoint recomputation, HCCL gradient
+differences, mixed-precision fused AdamW or DDP bucket experiments, read
+[references/pi05-lessons.md](references/pi05-lessons.md). These are bounded
+historical measurements; establish the new workload contract before reusing them.
+
 - **Direct mode:** The adapting agent can inspect and execute on the target. Follow the
   staged workflow in [references/porting-workflow.md](references/porting-workflow.md).
 - **Handoff mode:** The adapting agent cannot reach the target, or only a human can run

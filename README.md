@@ -1,15 +1,22 @@
 # Ascend NPU Porting
 
+此仓库复制自 [Wancha0/ascend-npu-porting](https://github.com/Wancha0/ascend-npu-porting)，保留其 Git 历史；复制基点为 `a471fe9`。Wanch9 副本新增了 **π0.5 四卡适配与训练加速案例**，原 Wancha0 仓库未修改。
+
+- 适配项目：[Wanch9/pi05-npu](https://github.com/Wanch9/pi05-npu)。
+- [中文案例](skills/ascend-npu-porting-zh/references/pi05-lessons.md) / [English case](references/pi05-lessons.md)：完整模型真实更新与恢复、HCCL 梯度差异诊断、重计算优化、融合 AdamW 和通信桶实验。
+- 推荐方案的短测耗时从 **1.3038 降至 1.1715 秒/步（−10.15%，吞吐 +11.29%）**，全量有效梯度对照通过。更快的 fused AdamW 和大桶仍为实验选项，未通过既定数值阈值。
+- 案例基于 4 × 910B1 和 8 个 LIBERO 缓存窗口，未验证长期收敛或任务成功率，也未单独验证加速路径 checkpoint 恢复。案例参数不成为新模型默认配置。
+
 ## GLM 中文使用入口
 
 先读 **[中文 skill 的 README](skills/ascend-npu-porting-zh/README.md)**，再按引导读取 [SKILL.md](skills/ascend-npu-porting-zh/SKILL.md)。README 包含可直接交给 GLM 的启动提示、输入清单、快速训练模式和断线续接方法；整目录可复制到任何具备文件、Shell 和目标机访问能力的编码宿主。
 
-本分支合并了此前本地技能改进，并新增通用中文包。中文包补充了已有资产优先、按用户要求跳过资产 hash、框架下的真实参数更新测量，以及 FastWAM 实测经验。只有文档和通用工具，没有模型权重、数据、环境或 FastWAM 适配代码。
+本仓库保留原有通用中文包：已有资产优先、按用户要求选择资产 hash、框架下的真实参数更新测量，以及 FastWAM 实测经验，并新增 π0.5 案例。只有文档和通用工具，没有模型权重、数据、环境或具体模型源码。
 
-获取本次发布分支：
+获取 Wanch9 副本：
 
 ```bash
-git clone --branch codex/glm-zh-training-first --single-branch https://github.com/Wancha0/ascend-npu-porting.git
+git clone https://github.com/Wanch9/ascend-npu-porting.git
 cd ascend-npu-porting
 ```
 
@@ -43,7 +50,7 @@ Python standard-library helpers.
 Quick start:
 
 ```bash
-git clone https://github.com/Wancha0/ascend-npu-porting.git
+git clone https://github.com/Wanch9/ascend-npu-porting.git
 cd ascend-npu-porting
 python3 scripts/self_check.py
 ```

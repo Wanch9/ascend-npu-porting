@@ -24,6 +24,7 @@ description: 将 PyTorch 模型的推理或训练适配到华为昇腾 NPU，支
 
 | 当前工作 | 读取材料 |
 |---|---|
+| π0.5/OpenPI、重计算梯度差异、融合 AdamW、HCCL 通信桶 | [π0.5 四卡适配与加速案例](references/pi05-lessons.md) |
 | 首次适配未见过的模型，或判断哪些经验可复用 | [陌生模型适配方法](references/model-independent.md) |
 | 尽快打通真实训练、复用已有资产、跳过资产哈希 | [快速训练与资产准备](references/fast-training.md) |
 | GLM 宿主、断线接续、离线交接 | [GLM 执行与交接](references/glm-handoff.md) |

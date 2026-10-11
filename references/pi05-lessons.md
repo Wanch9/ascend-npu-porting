@@ -1,0 +1,67 @@
+# PI0.5: four-card Ascend adaptation and training optimization
+
+Measured project: [Wanch9/pi05-npu](https://github.com/Wanch9/pi05-npu).
+The standalone Chinese toolkit includes a detailed, self-contained case in its
+`references/pi05-lessons.md`. This English reference contains the decision points
+needed by the root toolkit without depending on the Chinese package.
+
+## Contract and proven scope
+
+2026-10-11, OpenPI revision `215abfb217dbac7d5f1273282331b9b1866c0479`,
+four 910B1 NPUs, torch/torch_npu 2.6.0, CANN 8.2.RC1, transformers 4.53.2.
+All 3,616,757,520 model parameters were trainable, using upstream selected BF16
+and FP32 stability parameters. Per-rank batch one, global batch four, eight real
+cached LIBERO windows; no full dataset download. Baseline real updates, full
+model/optimizer/RNG/cursor save, fresh-process restore/update and bounded action
+inference passed. These are feasibility results, not convergence or task success.
+
+The narrow source changes cover explicit device/backend routing, CPU safetensors
+loading, CPU FP64 sinusoidal construction followed by the original caller cast,
+and strict official JAX conversion with only justified tied/unused head exceptions.
+Do not copy the runtime, dtype workaround or exceptions into an unrelated model.
+
+## Isolate communication before blaming checkpoint recomputation
+
+Removing only the whole-Gemma checkpoint wrapper while retaining per-layer and
+vision checkpointing initially failed the strict gradient comparison. Baseline
+repeats also differed. With fixed weights, input and per-rank RNG, and no optimizer
+updates between comparisons, DDP.no_sync() passed on all four ranks. In a fresh
+process, HCCL_DETERMINISTIC=true also passed: max absolute difference 1.3970e-9,
+relative L2 1.6750e-8, covering all 3,248,572,176 active gradient elements in 805
+tensors. Tolerances remained atol=1e-7, rtol=1e-5. This implicates nondeterministic
+HCCL reduction; tolerance agreement is not bitwise equality.
+
+torch deterministic mode exposed an unsupported interpolate decomposition layout.
+The failed attempt is retained. Subsequent model diagnostics left the original
+non-trainable image augmentation outside that flag; timing disabled torch global
+determinism and kept deterministic HCCL consistently across variants.
+
+## Measured gains and rejected defaults
+
+Three warmup plus eight measured updates per variant, per-step slowest rank then
+median, no outliers removed, cached CPU inputs, continuing weights across blocks:
+
+| Variant | Median seconds/step | Peak allocated GiB/card | Decision |
+|---|---:|---:|---|
+| Baseline checkpoint / AdamW / 25 MiB | 1.3038 | 32.743 | Baseline |
+| Remove outer checkpoint / AdamW / 25 MiB | 1.1715 | 32.743 | Full active-gradient comparison passed |
+| Remove outer checkpoint / fused AdamW / 25 MiB | 1.0725 | 30.393 | Parameter and first-moment checks failed |
+| Remove outer checkpoint / AdamW / 50 or 100 MiB | 1.1553 / 1.1570 | 32.743 | Gradient checks failed |
+
+The recommended path reduced time 10.15% (throughput +11.29%), repeated at 1.1723
+seconds versus baseline repeat 1.3026. NpuFusedAdamW rejected BF16 in this runtime;
+torch.optim.AdamW(fused=True) had native mixed-BF16/FP32 support, but its three-step
+probe on 2,448,160 sampled real parameter/gradient elements failed strict parameter
+and first-moment checks. Verify the fused flag and state step-tensor device when
+switching optimizers; successful execution alone does not establish parity.
+
+Deterministic collectives need not preserve reduction order across bucket sizes.
+The 50/100 MiB buckets improved only another 1.38%/1.24%; switching back to 25 MiB
+passed the gradient comparison. Keep standard AdamW and 25 MiB for this contract.
+
+The recommended optimization was exercised in the experimental training process
+(77 real updates/rank across all variants); original trainer defaults were not
+changed. Accelerated-path checkpoint restore, fused full-state restore, long-run
+convergence and full DataLoader/video-decoding throughput remain unverified.
+Do not call the entire production path performance-tuned or substitute the fused
+17.74% timing improvement for the numerically accepted 10.15% result.

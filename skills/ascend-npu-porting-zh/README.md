@@ -62,6 +62,8 @@
 
 ## 工具与参考
 
+- [π0.5 四卡适配与训练加速案例](references/pi05-lessons.md)：完整模型真实更新/恢复、HCCL 梯度差异诊断，以及被采纳和未采纳的加速方案；案例参数不作为新任务默认值。
+
 - [工具说明](references/tools.md)：环境探测、风险扫描、SSH、持久退出记录；工具按需要调用。
 - [真实训练与恢复验收](references/validation.md)：框架更新时点、参数名、梯度和权重差异证据。
 - [GLM 交接与独立性](references/glm-handoff.md)：控制端允许的协调与应记录的实现介入。
