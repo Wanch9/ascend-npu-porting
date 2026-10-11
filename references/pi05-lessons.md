@@ -5,6 +5,13 @@ The standalone Chinese toolkit includes a detailed, self-contained case in its
 `references/pi05-lessons.md`. This English reference contains the decision points
 needed by the root toolkit without depending on the Chinese package.
 
+Integration update: the regular `scripts/train_pytorch.py` entry now accepts
+`--pytorch-npu-training-optimization`, backed by the native model's
+`gradient_checkpointing_enable(checkpoint_whole_stack=False)` API. The flag is
+off by default and configures deterministic HCCL before initialization. Statements
+below about experimental-only use describe the original measurement stage; see
+the project report for integration regression and remaining validation boundaries.
+
 ## Contract and proven scope
 
 2026-10-11, OpenPI revision `215abfb217dbac7d5f1273282331b9b1866c0479`,

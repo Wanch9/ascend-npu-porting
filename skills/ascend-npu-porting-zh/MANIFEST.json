@@ -80,8 +80,8 @@
     {
       "mode": "0644",
       "path": "references/pi05-lessons.md",
-      "sha256": "bb5f79413a943b8db6f37779bfc6c853687f7161e429c419ff901a830c969316",
-      "size_bytes": 6096,
+      "sha256": "f6d47c51301b698cd1a6fa94d956ded0c4f791f25a8b3fb8bca6f4d14d01f43b",
+      "size_bytes": 6536,
       "type": "file"
     },
     {
@@ -162,9 +162,9 @@
     ".DS_Store",
     "*/.DS_Store"
   ],
-  "generated_at": "2026-10-11T12:21:38.332784Z",
+  "generated_at": "2026-10-11T12:34:51.025790Z",
   "hash_algorithm": "sha256",
   "root_name": "ascend-npu-porting-zh",
   "schema_version": 1,
-  "total_file_bytes": 116189
+  "total_file_bytes": 116629
 }

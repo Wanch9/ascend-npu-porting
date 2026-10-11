@@ -4,6 +4,8 @@
 完整改动与命令见项目 README 和 NPU_PORTING.md；计时及梯度证据见项目 npu/optimization_summary.json。
 这些是特定模型和运行时的历史结果，不是新任务的默认卡数、容差或兼容性承诺。
 
+后续接入：项目常规 `scripts/train_pytorch.py` 已支持 `--pytorch-npu-training-optimization`，模型原生开关为 `gradient_checkpointing_enable(checkpoint_whole_stack=False)`；在 NPU/HCCL 初始化前配置确定性通信。下文“仅实验进程启用”描述原测量阶段，当前可通过常规入口显式开启，默认仍关闭。完整数据链路及新入口保存恢复的验收状态以项目报告为准。
+
 ## 实测契约与完成边界
 
 - OpenPI `215abfb217dbac7d5f1273282331b9b1866c0479`，完整 π0.5 base，3,616,757,520 参数全部可训练。

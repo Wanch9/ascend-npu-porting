@@ -6,6 +6,7 @@
 - [中文案例](skills/ascend-npu-porting-zh/references/pi05-lessons.md) / [English case](references/pi05-lessons.md)：完整模型真实更新与恢复、HCCL 梯度差异诊断、重计算优化、融合 AdamW 和通信桶实验。
 - 推荐方案的短测耗时从 **1.3038 降至 1.1715 秒/步（−10.15%，吞吐 +11.29%）**，全量有效梯度对照通过。更快的 fused AdamW 和大桶仍为实验选项，未通过既定数值阈值。
 - 案例基于 4 × 910B1 和 8 个 LIBERO 缓存窗口，未验证长期收敛或任务成功率，也未单独验证加速路径 checkpoint 恢复。案例参数不成为新模型默认配置。
+- π0.5 项目已将推荐策略接入常规 `scripts/train_pytorch.py`，使用 `--pytorch-npu-training-optimization` 显式启用；开关默认关闭，融合优化器和大桶仍未成为默认配置。
 
 ## GLM 中文使用入口
 
