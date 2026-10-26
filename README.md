@@ -1,60 +1,13 @@
 # Ascend NPU Porting
 
-此仓库复制自 [Wancha0/ascend-npu-porting](https://github.com/Wancha0/ascend-npu-porting)，保留其 Git 历史；复制基点为 `a471fe9`。Wanch9 副本新增了 **π0.5 四卡适配与训练加速案例**，原 Wancha0 仓库未修改。
+**English** · [简体中文](README.zh-CN.md)
 
-- 适配项目：[Wanch9/pi05-npu](https://github.com/Wanch9/pi05-npu)。
-- [中文案例](skills/ascend-npu-porting-zh/references/pi05-lessons.md) / [English case](references/pi05-lessons.md)：完整模型真实更新与恢复、HCCL 梯度差异诊断、重计算优化、融合 AdamW 和通信桶实验。
-- 推荐方案的短测耗时从 **1.3038 降至 1.1715 秒/步（−10.15%，吞吐 +11.29%）**，全量有效梯度对照通过。更快的 fused AdamW 和大桶仍为实验选项，未通过既定数值阈值。
-- 案例基于 4 × 910B1 和 8 个 LIBERO 缓存窗口，未验证长期收敛或任务成功率，也未单独验证加速路径 checkpoint 恢复。案例参数不成为新模型默认配置。
-- π0.5 项目已将推荐策略接入常规 `scripts/train_pytorch.py`，使用 `--pytorch-npu-training-optimization` 显式启用；开关默认关闭，融合优化器和大桶仍未成为默认配置。
-
-## GLM 中文使用入口
-
-先读 **[中文 skill 的 README](skills/ascend-npu-porting-zh/README.md)**，再按引导读取 [SKILL.md](skills/ascend-npu-porting-zh/SKILL.md)。README 包含可直接交给 GLM 的启动提示、输入清单、快速训练模式和断线续接方法；整目录可复制到任何具备文件、Shell 和目标机访问能力的编码宿主。
-
-本仓库保留原有通用中文包：已有资产优先、按用户要求选择资产 hash、框架下的真实参数更新测量，以及 FastWAM 实测经验，并新增 π0.5 案例。只有文档和通用工具，没有模型权重、数据、环境或具体模型源码。
-
-获取 Wanch9 副本：
-
-```bash
-git clone https://github.com/Wanch9/ascend-npu-porting.git
-cd ascend-npu-porting
-```
-
-给 GLM 的最短提示：
-
-```text
-请读取当前仓库 skills/ascend-npu-porting-zh/README.md，并依照其中的
-SKILL.md 和启动模板，为我指定的模型执行昇腾 NPU 适配。
-```
-
-选择中文包时只需复制 `skills/ascend-npu-porting-zh/`，它不依赖根目录的英文包；不要把两套说明当成需要重复执行的检查清单。
-
-## Original English toolkit
+## Overview
 
 An agent-independent, code-first workflow for adapting and validating PyTorch
 projects on Huawei Ascend NPU. Codex is not required: GLM-hosted coding agents,
 other coding agents, and human operators can use the Markdown instructions and
 Python standard-library helpers.
-
-- Start on a new computer with [PORTABLE_AGENT_GUIDE.md](PORTABLE_AGENT_GUIDE.md).
-- Give an agent [SKILL.md](SKILL.md) as the authoritative decision guide.
-- For GLM, also use [references/glm-agent.md](references/glm-agent.md) to verify
-  the host's actual capabilities and persistence behavior.
-- Verify a copied toolkit with `python3 scripts/self_check.py` before use.
-- For remote Bash, use the bundled SSH helper described in
-  [references/ssh-execution.md](references/ssh-execution.md).
-- To test independent execution by GLM, use
-  [references/agent-validation.md](references/agent-validation.md) for a recorded
-  development run, a fresh replay, and a second-model transfer test.
-
-Quick start:
-
-```bash
-git clone https://github.com/Wanch9/ascend-npu-porting.git
-cd ascend-npu-porting
-python3 scripts/self_check.py
-```
 
 The workflow covers source compatibility, real model/training/serving gates,
 HCCL/DDP, checkpoint and resume evidence, offline handoff, and optional
@@ -63,9 +16,103 @@ multi-library patch delivery and scheduler-independent training-job lifecycle
 contracts. It includes local artifact availability contracts but deliberately
 excludes OBS and data-transfer operations.
 
-Public delivery contains instructions, small source patches, project-owned
-overlays, launch/config files, tests, and hash manifests—not complete dependency
-trees, accelerator runtimes, virtual environments, weights, datasets, or
-caches. See
+## Quick start
+
+```bash
+git clone https://github.com/Wanch9/ascend-npu-porting.git
+cd ascend-npu-porting
+```
+
+Choose one toolkit below and follow its entry guide. The English and Chinese
+toolkits are separate entry points, not checklists to execute twice.
+
+## Choose a toolkit
+
+### English toolkit
+
+- Start on a new computer with [PORTABLE_AGENT_GUIDE.md](PORTABLE_AGENT_GUIDE.md).
+- Give an agent [SKILL.md](SKILL.md) as the authoritative decision guide.
+- For GLM, also use [references/glm-agent.md](references/glm-agent.md) to verify
+  the host's actual capabilities and persistence behavior.
+- Verify a copied toolkit with `python3 scripts/self_check.py` from the repository
+  root before use. This checks the offline tools, not NPU or model readiness.
+
+### Chinese toolkit
+
+Start with the [Chinese toolkit README](skills/ascend-npu-porting-zh/README.md),
+then follow its instructions to read [SKILL.md](skills/ascend-npu-porting-zh/SKILL.md).
+The guide includes a GLM startup prompt, required inputs, fast training mode,
+and instructions for resuming interrupted work. The toolkit can be copied to
+any coding-agent host with file, shell, and target-machine access.
+
+Copy only `skills/ascend-npu-porting-zh/` when choosing the Chinese toolkit;
+it does not depend on the English toolkit at the repository root. Its workflow
+prioritizes existing assets, applies asset hashing according to user requirements,
+and measures real parameter updates within the training framework. It includes
+the model cases listed in its [case index](skills/ascend-npu-porting-zh/references/models/README.md).
+
+A minimal prompt for GLM (the Chinese version is in the
+[Chinese homepage](README.zh-CN.md)):
+
+```text
+Read skills/ascend-npu-porting-zh/README.md in this repository, then follow
+its SKILL.md and startup template to port my specified model to Ascend NPU.
+```
+
+## π0.5 case study and validation limits
+
+- Ported project: [Wanch9/pi05-npu](https://github.com/Wanch9/pi05-npu).
+- [English case study](references/models/pi05.md) / [Chinese case study](skills/ascend-npu-porting-zh/references/models/pi05.md):
+  real full-model updates and resume, HCCL gradient discrepancy diagnosis,
+  recomputation optimization, fused AdamW, and communication bucket experiments.
+- In a short benchmark, the recommended configuration reduced step time from
+  **1.3038 to 1.1715 seconds (−10.15%, throughput +11.29%)**, passing comparison
+  across all valid gradients. Faster fused AdamW and larger buckets remain
+  experimental options because they did not pass the established numerical thresholds.
+- The case used 4 × 910B1 and 8 LIBERO cache windows. Long-term convergence and
+  task success rates were not validated; checkpoint resume on the accelerated path
+  was not separately validated either. Case parameters are not defaults for new models.
+- The π0.5 project has integrated the recommended strategy into its regular
+  `scripts/train_pytorch.py` entry point, explicitly enabled with
+  `--pytorch-npu-training-optimization`. The flag is off by default; fused
+  optimizers and larger buckets are still not defaults.
+
+## Tools, references, and delivery scope
+
+- For remote Bash, use the bundled SSH helper described in
+  [references/ssh-execution.md](references/ssh-execution.md).
+- To test independent execution by GLM, use
+  [references/agent-validation.md](references/agent-validation.md) for a recorded
+  development run, a fresh replay, and a second-model transfer test.
+- For Chinese toolkit tools and references, follow its
+  [README](skills/ascend-npu-porting-zh/README.md).
+
+This repository contains documentation and general-purpose tools, without model
+weights, datasets, environments, or specific model source code. Public delivery
+contains instructions, small source patches, project-owned overlays, launch/config
+files, tests, and hash manifests—not complete dependency trees, accelerator runtimes,
+virtual environments, weights, datasets, or caches. See
 [references/dependency-patch-delivery.md](references/dependency-patch-delivery.md)
 for reconstructing changes that span installed libraries.
+
+## Models adapted in practice
+
+Our Ascend NPU adaptation work includes the following models and derived projects:
+
+Detailed lessons, sources and validation boundaries are collected in
+[references/models/](references/models/README.md), with one file per model/project.
+
+- [MiniMax-H3](references/models/minimax-h3.md): eight-card TP/SP inference and attention forward/backward validation.
+- [ActionWM](references/models/actionwm.md): one eight-card ControlNet training update with a frozen MiniMax-H3 video DiT; the recorded run has an exit-code evidence gap.
+- [FastWAM](references/models/fastwam.md): eight-card and later sixteen-card real LIBERO updates; the later run also passed strict trained-weight reload and bounded inference.
+- [π0.5](references/models/pi05.md): four-card full-model training, baseline save/resume, bounded action inference, and training acceleration experiments.
+- [JEPA-WAM](references/models/jepa-wam.md): frozen-feature ViT-B policy and future-predictor training, validation, checkpoint reload and resume, including one-, two- and eight-card checks; online V-JEPA encoding was outside this port.
+- [OpenWAM-α](references/models/openwam.md): eight-card MS-HAB training, checkpoint save/restore and two-node, sixteen-card throughput experiments; bitwise continuation equivalence did not pass.
+- [MoPA](references/models/mopa.md): full-parameter training of the Qwen3-VL-4B backbone and MoPA action head on MS-HAB, with two-node, sixteen-card real updates and checkpoint resume; simulation evaluation was deferred.
+- [fast_mobile_wam](references/models/fast-mobile-wam.md) (derived from FastWAM): dual ActionDiT update/reload, plus Human300 HCCL resume diagnosis and multi-node checkpoint assembly lessons.
+
+Validation scope is specific to each project and configuration. Case summaries
+and source-document hashes are included here; original code, raw logs and runtime
+artifacts remain in their respective projects.
+
+Originally based on [Wancha0/ascend-npu-porting](https://github.com/Wancha0/ascend-npu-porting), with further adaptation lessons maintained here.

@@ -1,5 +1,7 @@
 # 复用 MiniMax-H3 的历史 NPU 适配经验
 
+来源为工具包原 `references/minimax-h3-lessons.md`；快照摘要见 [sources.json](sources.json)。相关组合模型适配另见 [ActionWM](actionwm.md)。
+
 适用于用户允许参考既有 MiniMax-H3 工作的模型族适配。以下经验来自历史
 Ascend 910B1、CANN 8.2.RC1、PyTorch/torch_npu 2.6.0 实测记录，是排查线索和
 测试设计，不是当前 ActionWM 的已通过结论。当前源码、算子、形状和环境必须重验。

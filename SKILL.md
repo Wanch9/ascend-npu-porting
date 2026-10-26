@@ -44,15 +44,19 @@ Ordinary porting does not require this experiment. A portable guide, helper
 self-check, or reviewer-written patch alone cannot establish agent independence.
 
 For authorized reuse of prior MiniMax-H3 work, read
-[references/minimax-h3-lessons.md](references/minimax-h3-lessons.md). It separates
+[MiniMax-H3 lessons](references/models/minimax-h3.md). It separates
 historical inference/training operator results from the current model's gates;
 do not copy a past multi-card serving configuration into a single-card task.
+
+For related model or failure-specific experience, use the
+[model case index](references/models/README.md) to select a relevant case.
+Do not load all cases or treat their configurations as new-task defaults.
 
 ## Choose the operating mode
 
 For PI0.5/OpenPI porting, nested checkpoint recomputation, HCCL gradient
 differences, mixed-precision fused AdamW or DDP bucket experiments, read
-[references/pi05-lessons.md](references/pi05-lessons.md). These are bounded
+[π0.5 lessons](references/models/pi05.md). These are bounded
 historical measurements; establish the new workload contract before reusing them.
 
 - **Direct mode:** The adapting agent can inspect and execute on the target. Follow the

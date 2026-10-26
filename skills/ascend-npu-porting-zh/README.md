@@ -62,12 +62,14 @@
 
 ## 工具与参考
 
-- [π0.5 四卡适配与训练加速案例](references/pi05-lessons.md)：完整模型真实更新/恢复、HCCL 梯度差异诊断，以及被采纳和未采纳的加速方案；案例参数不作为新任务默认值。
+- [模型适配案例索引](references/models/README.md)：集中整理 MiniMax-H3、ActionWM、FastWAM、π0.5、JEPA-WAM、OpenWAM-α、MoPA 及 fast_mobile_wam 衍生项目，按问题选读；每项保留来源与验证边界。
+
+- [π0.5 四卡适配与训练加速案例](references/models/pi05.md)：完整模型真实更新/恢复、HCCL 梯度差异诊断，以及被采纳和未采纳的加速方案；案例参数不作为新任务默认值。
 
 - [工具说明](references/tools.md)：环境探测、风险扫描、SSH、持久退出记录；工具按需要调用。
 - [真实训练与恢复验收](references/validation.md)：框架更新时点、参数名、梯度和权重差异证据。
 - [GLM 交接与独立性](references/glm-handoff.md)：控制端允许的协调与应记录的实现介入。
 - [官方参考链接](references/official-links.md)：按目标已安装版本查询，离线时读取已安装源码。
-- [FastWAM 经验附录](references/fastwam-lessons.md)：只在相关问题出现时阅读，里面的参数和版本不是新模型默认值。
+- [FastWAM 经验附录](references/models/fastwam.md)：只在相关问题出现时阅读，里面的参数和版本不是新模型默认值。
 
 使用本包不会自动创建云作业、下载资产、上传仓库或发起训练。具体操作依据用户本次授权执行；模型支持情况以对应真实运行证据为准。

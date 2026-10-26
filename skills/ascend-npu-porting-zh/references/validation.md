@@ -68,8 +68,8 @@ run-唯一编号/
 
 ## 已知历史案例的结论边界
 
-ActionWM 的开发轮验证了完整 MiniMax-H3 视频 DiT 冻结、发布版 ControlNet 训练、真实缓存、单节点 8 NPU 的一次更新。采用 BF16、CPU 模型/optimizer offload、显式 HCCL 平均。该轮没有证明全参数微调、长期收敛、新进程恢复、任意累积数或 FastWAM；SSH 中断还留下退出码缺口。
+模型专属细节已集中到[模型案例目录](models/README.md)。例如 [ActionWM](models/actionwm.md) 的开发轮有真实更新，但仍存在训练退出码证据缺口；不能合并写成全流程通过。
 
 这些事实用于解释验收边界和改进操作方法。新模型需要自己的数据与参数更新证据，不使用历史数值作为应当匹配的断言。
 
-FastWAM 的真实前向算子覆盖、参数测量和资产准备经验见 [FastWAM 附录](fastwam-lessons.md)。
+FastWAM 的真实前向算子覆盖、参数测量和资产准备经验见 [FastWAM 附录](models/fastwam.md)。

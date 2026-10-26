@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "compiled_on": "2026-10-26",
+  "timezone": "Asia/Shanghai",
+  "scope": "SHA-256 identifies the local source document snapshot read during compilation, not independent model validation or a claim that the source is publicly hosted. Source paths refer to each named project before this reorganization. Raw reports and runtime assets remain in their source projects.",
+  "sources": [
+    {
+      "model": "minimax-h3",
+      "project": "ascend-npu-porting",
+      "path": "references/minimax-h3-lessons.md",
+      "sha256": "a35306e74b6e14a30c56d3962188fa3a15bd0ecee07ffc77714f45abb6078eee"
+    },
+    {
+      "model": "actionwm",
+      "project": "ascend-npu-porting",
+      "path": "references/glm-agent.md",
+      "sha256": "9d8ce8a4cfb26391b38e8db5196ee1c5820abe19fa50032b81aa6eba5760809d"
+    },
+    {
+      "model": "actionwm",
+      "project": "ascend-npu-porting",
+      "path": "skills/ascend-npu-porting-zh/references/validation.md",
+      "sha256": "b185852b6a6faed94fc8b048dc8da135784eda4541414e652b311f7065c9e153"
+    },
+    {
+      "model": "fastwam",
+      "project": "ascend-npu-porting",
+      "path": "skills/ascend-npu-porting-zh/references/fastwam-lessons.md",
+      "sha256": "9b1565440fb1ebf5d62e12140ef958fd2ff2b017045cdb558360c4e2af3bc80e"
+    },
+    {
+      "model": "fastwam",
+      "project": "FastWAM-NPU",
+      "path": "NPU_PORTING.md",
+      "sha256": "06ebf5842b7774b18de6252cb9ba6a4d59f807d4fd57ea1a31d2cfd28315f89e"
+    },
+    {
+      "model": "pi05",
+      "project": "ascend-npu-porting",
+      "path": "references/pi05-lessons.md",
+      "sha256": "1c28e38822e24130b13a72a5cc625dbdafb97a931cc527740f625fb100a1bcdd"
+    },
+    {
+      "model": "pi05",
+      "project": "ascend-npu-porting",
+      "path": "skills/ascend-npu-porting-zh/references/pi05-lessons.md",
+      "sha256": "f6d47c51301b698cd1a6fa94d956ded0c4f791f25a8b3fb8bca6f4d14d01f43b"
+    },
+    {
+      "model": "jepa-wam",
+      "project": "JEPA-WAM-NPU-publish",
+      "path": "NPU_PORTING.md",
+      "sha256": "48409128fb6ee59665a4ba145b3f07f80cf68a8a1ee17c06e75027538287fe8e"
+    },
+    {
+      "model": "openwam",
+      "project": "OpenWAM-NPU",
+      "path": "NPU_PORTING.md",
+      "sha256": "f7ed220735aee11542e677c9fd206f31446b5e49aee615a9dcbb33d5c8ebbf04"
+    },
+    {
+      "model": "openwam",
+      "project": "OpenWAM-NPU",
+      "path": "artifacts/npu_formal/latest-status.json",
+      "sha256": "fb799ba48a8a0ff7d3587780702b9e52dcd16cc494166070c004371f4c665e20"
+    },
+    {
+      "model": "mopa",
+      "project": "mopa-mshab",
+      "path": "NPU_PORTING.md",
+      "sha256": "fc22db5b2df22e9ed9583fc68a0521113133b26a5f8fbbca440c13f4a2d6b47a"
+    },
+    {
+      "model": "fast-mobile-wam",
+      "project": "fast_mobile_wam",
+      "path": "README.md",
+      "sha256": "e398309e90f5e4ca870fa88e5ba8e104a818e02a92011cd4f9021a98e421b443"
+    },
+    {
+      "model": "fast-mobile-wam",
+      "project": "fast_mobile_wam",
+      "path": "docs/validation/dual-action-20261005/VERIFICATION.json",
+      "sha256": "42f7c897d7793b593b9513d41420c4dfa68659be7c000a28d1ed74c8e7fe5f85"
+    },
+    {
+      "model": "fast-mobile-wam",
+      "project": "fast_mobile_wam",
+      "path": "docs/validation/human300-resume-cause-20261011/README.md",
+      "sha256": "5ff484f4e00032f7d48082fc336cc345ce7bae1a7ea62e985fa6503625d72ff8"
+    },
+    {
+      "model": "fast-mobile-wam",
+      "project": "fast_mobile_wam",
+      "path": "docs/validation/human300-two-node-20261012/README.md",
+      "sha256": "8121fb1add1bad9952889284d2048cc7883294e83b8b6451d30c4845ce0992c3"
+    }
+  ]
+}

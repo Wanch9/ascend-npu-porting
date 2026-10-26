@@ -3,15 +3,15 @@
     {
       "mode": "0644",
       "path": "README.md",
-      "sha256": "35a11fc9bb3d46b89bfe4a0273af60589c5747fc50ec5b45276e345ac2f1486a",
-      "size_bytes": 5724,
+      "sha256": "80f5b76f5146db19dfb53b55651b4cb9e4c686e67546a80d2731d258ad17beff",
+      "size_bytes": 5957,
       "type": "file"
     },
     {
       "mode": "0644",
       "path": "SKILL.md",
-      "sha256": "f9f7fd44af8c4b29a7fc427d021994ccb2c57011c45a0bf8dff3e162c9b47c6b",
-      "size_bytes": 9647,
+      "sha256": "d7e4a92f671f74b9d9035fb31cef3f9564f777c4cdc2288ee09bc9db1e6d0dfb",
+      "size_bytes": 9790,
       "type": "file"
     },
     {
@@ -44,13 +44,6 @@
     },
     {
       "mode": "0644",
-      "path": "references/fastwam-lessons.md",
-      "sha256": "9b1565440fb1ebf5d62e12140ef958fd2ff2b017045cdb558360c4e2af3bc80e",
-      "size_bytes": 3563,
-      "type": "file"
-    },
-    {
-      "mode": "0644",
       "path": "references/glm-handoff.md",
       "sha256": "c478ef04d3e85d09c8962d21ffb341ed1c652d2d972100ba48c109f96ce4811b",
       "size_bytes": 5767,
@@ -72,16 +65,79 @@
     },
     {
       "mode": "0644",
-      "path": "references/official-links.md",
-      "sha256": "dace890812b64470e4f16761feb0915fbd44ab0b7e4c8540f3ebb34c066d0f78",
-      "size_bytes": 3986,
+      "path": "references/models/README.md",
+      "sha256": "fdfb05236ccf864592a1896ab6a1da7e214d43eee8da45bf86b77f8ab4b91184",
+      "size_bytes": 2446,
       "type": "file"
     },
     {
       "mode": "0644",
-      "path": "references/pi05-lessons.md",
-      "sha256": "f6d47c51301b698cd1a6fa94d956ded0c4f791f25a8b3fb8bca6f4d14d01f43b",
-      "size_bytes": 6536,
+      "path": "references/models/actionwm.md",
+      "sha256": "c7267e4157b44340883bde004aec0cf61cb587f15ea3fa55174d03c13ee8fc29",
+      "size_bytes": 2186,
+      "type": "file"
+    },
+    {
+      "mode": "0644",
+      "path": "references/models/fast-mobile-wam.md",
+      "sha256": "311adb1d43d443d4ba183672ee044b44663129e1761c6314fccaab28ff28cf68",
+      "size_bytes": 2923,
+      "type": "file"
+    },
+    {
+      "mode": "0644",
+      "path": "references/models/fastwam.md",
+      "sha256": "4222e56d4fd5905ce15636402496d08db3af507342b8cd5b67e7e8b48788049d",
+      "size_bytes": 5194,
+      "type": "file"
+    },
+    {
+      "mode": "0644",
+      "path": "references/models/jepa-wam.md",
+      "sha256": "c47c5c5606783d7058f4277bd4199276df81ad86184af702e33d67bde6ec1f87",
+      "size_bytes": 2256,
+      "type": "file"
+    },
+    {
+      "mode": "0644",
+      "path": "references/models/minimax-h3.md",
+      "sha256": "96f8981d7086d9d114d106976d488bd4dfc08e556450859fb2bcd08db868371f",
+      "size_bytes": 6932,
+      "type": "file"
+    },
+    {
+      "mode": "0644",
+      "path": "references/models/mopa.md",
+      "sha256": "5ac5530424bf6bf7937016ed6c1f2253f4ccb38ea04c2ca4542a97828a166eff",
+      "size_bytes": 2550,
+      "type": "file"
+    },
+    {
+      "mode": "0644",
+      "path": "references/models/openwam.md",
+      "sha256": "700d6f6fae87496e933704d894e730e04e2a077011c9097e2763f93fd5658e72",
+      "size_bytes": 2960,
+      "type": "file"
+    },
+    {
+      "mode": "0644",
+      "path": "references/models/pi05.md",
+      "sha256": "34e99b82bcd34930e1c17f9aba626b7fa9fa466f525238db002fd8fd6f717695",
+      "size_bytes": 6612,
+      "type": "file"
+    },
+    {
+      "mode": "0644",
+      "path": "references/models/sources.json",
+      "sha256": "eeffabd35011816519514a8cfe8789392525b97e74f29a98b1c646846b7c5f43",
+      "size_bytes": 3601,
+      "type": "file"
+    },
+    {
+      "mode": "0644",
+      "path": "references/official-links.md",
+      "sha256": "dace890812b64470e4f16761feb0915fbd44ab0b7e4c8540f3ebb34c066d0f78",
+      "size_bytes": 3986,
       "type": "file"
     },
     {
@@ -94,8 +150,8 @@
     {
       "mode": "0644",
       "path": "references/validation.md",
-      "sha256": "b185852b6a6faed94fc8b048dc8da135784eda4541414e652b311f7065c9e153",
-      "size_bytes": 7104,
+      "sha256": "a9db12ece144ea46f325b51d1a5125f345128198b3acee32e00f832864b19529",
+      "size_bytes": 6972,
       "type": "file"
     },
     {
@@ -141,7 +197,7 @@
       "type": "file"
     }
   ],
-  "entry_count": 20,
+  "entry_count": 28,
   "excludes": [
     ".git",
     "*/.git",
@@ -162,9 +218,9 @@
     ".DS_Store",
     "*/.DS_Store"
   ],
-  "generated_at": "2026-10-11T12:34:51.025790Z",
+  "generated_at": "2026-10-26T09:21:54.605184Z",
   "hash_algorithm": "sha256",
   "root_name": "ascend-npu-porting-zh",
   "schema_version": 1,
-  "total_file_bytes": 116629
+  "total_file_bytes": 144434
 }

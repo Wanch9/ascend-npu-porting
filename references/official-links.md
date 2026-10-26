@@ -73,7 +73,7 @@ Record the exact URL, branch/tag, and retrieval date in `NPU_PORTING.md`.
   tracing Hydra configuration, DeepSpeed/torchrun entrypoints, optional compile
   paths, VideoDiT/ActionDiT coupling, and evaluation workers.
 
-The GLM guide also records an audited ActionWM composite-source snapshot. It is
+The [ActionWM case](models/actionwm.md) records an audited composite-source snapshot. It is
 an illustrative failure pattern, not an availability dependency or an
 authoritative source link; the public workflow must remain usable when that
 external repository or its branches are unavailable.
