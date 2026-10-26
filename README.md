@@ -51,31 +51,12 @@ prioritizes existing assets, applies asset hashing according to user requirement
 and measures real parameter updates within the training framework. It includes
 the model cases listed in its [case index](skills/ascend-npu-porting-zh/references/models/README.md).
 
-A minimal prompt for GLM (the Chinese version is in the
-[Chinese homepage](README.zh-CN.md)):
+A minimal prompt for GLM:
 
 ```text
 Read skills/ascend-npu-porting-zh/README.md in this repository, then follow
 its SKILL.md and startup template to port my specified model to Ascend NPU.
 ```
-
-## π0.5 case study and validation limits
-
-- Ported project: [Wanch9/pi05-npu](https://github.com/Wanch9/pi05-npu).
-- [English case study](references/models/pi05.md) / [Chinese case study](skills/ascend-npu-porting-zh/references/models/pi05.md):
-  real full-model updates and resume, HCCL gradient discrepancy diagnosis,
-  recomputation optimization, fused AdamW, and communication bucket experiments.
-- In a short benchmark, the recommended configuration reduced step time from
-  **1.3038 to 1.1715 seconds (−10.15%, throughput +11.29%)**, passing comparison
-  across all valid gradients. Faster fused AdamW and larger buckets remain
-  experimental options because they did not pass the established numerical thresholds.
-- The case used 4 × 910B1 and 8 LIBERO cache windows. Long-term convergence and
-  task success rates were not validated; checkpoint resume on the accelerated path
-  was not separately validated either. Case parameters are not defaults for new models.
-- The π0.5 project has integrated the recommended strategy into its regular
-  `scripts/train_pytorch.py` entry point, explicitly enabled with
-  `--pytorch-npu-training-optimization`. The flag is off by default; fused
-  optimizers and larger buckets are still not defaults.
 
 ## Tools, references, and delivery scope
 
@@ -100,10 +81,11 @@ for reconstructing changes that span installed libraries.
 Our Ascend NPU adaptation work includes the following models and derived projects:
 
 Detailed lessons, sources and validation boundaries are collected in
-[references/models/](references/models/README.md), with one file per model/project.
+[references/models/](references/models/README.md), with one file per model/project;
+the Chinese versions are in the [Chinese model case directory](skills/ascend-npu-porting-zh/references/models/README.md).
 
 - [MiniMax-H3](references/models/minimax-h3.md): eight-card TP/SP inference and attention forward/backward validation.
-- [ActionWM](references/models/actionwm.md): one eight-card ControlNet training update with a frozen MiniMax-H3 video DiT; the recorded run has an exit-code evidence gap.
+- [ActionWM](references/models/actionwm.md): one eight-card ControlNet training update with a frozen MiniMax-H3 video DiT.
 - [FastWAM](references/models/fastwam.md): eight-card and later sixteen-card real LIBERO updates; the later run also passed strict trained-weight reload and bounded inference.
 - [π0.5](references/models/pi05.md): four-card full-model training, baseline save/resume, bounded action inference, and training acceleration experiments.
 - [JEPA-WAM](references/models/jepa-wam.md): frozen-feature ViT-B policy and future-predictor training, validation, checkpoint reload and resume, including one-, two- and eight-card checks; online V-JEPA encoding was outside this port.
@@ -114,5 +96,3 @@ Detailed lessons, sources and validation boundaries are collected in
 Validation scope is specific to each project and configuration. Case summaries
 and source-document hashes are included here; original code, raw logs and runtime
 artifacts remain in their respective projects.
-
-Originally based on [Wancha0/ascend-npu-porting](https://github.com/Wancha0/ascend-npu-porting), with further adaptation lessons maintained here.
